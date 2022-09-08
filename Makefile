@@ -14,7 +14,10 @@ sqlc:
 	sqlc generate
 test:
 	go test -v -cover ./...
+
+server:
+	go run main.go
 migrateupdown:
 	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable" -verbose down
 	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable" -verbose up
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc test migrateupdown
+.PHONY: postgres createdb dropdb migrateup migratedown sqlc test migrateupdown server 
